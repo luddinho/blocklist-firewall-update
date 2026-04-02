@@ -1,0 +1,5 @@
+# Ignore log directory
+log/
+
+# Ignore user-specific config file
+blocklist-firewall-update.conf

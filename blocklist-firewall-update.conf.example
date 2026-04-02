@@ -1,0 +1,92 @@
+# blocklist-firewall-update.conf
+#
+# Configuration file for blocklist-firewall-update.sh
+#
+# Place this file next to the script, at /etc/blocklist-firewall-update.conf,
+# or point to it explicitly:
+#   CONFIG_FILE=/path/to/blocklist-firewall-update.conf sh blocklist-firewall-update.sh
+#
+# Each enabled source maintains its own ipset and gets its own DROP rule in the
+# iptables chain. The fixed ipset names are:
+#
+#   blocklist_de        – blocklist.de
+#   abuseipdb_com       – AbuseIPDB
+#   dshield_org         – DShield
+#   <set_name>          – FireHOL (one ipset per name in FIREHOL_SETS)
+#   threatfox_abuse_ch  – ThreatFox
+
+
+# ── General ────────────────────────────────────────────────────────────────────
+
+# 1 = print commands without applying them
+DRY_RUN=0
+
+# Name of the iptables chain created/flushed by the script
+BLOCKLIST_CHAIN_NAME=BLOCKLIST_INPUT
+
+
+# ── blocklist.de ───────────────────────────────────────────────────────────────
+# https://www.blocklist.de/en/export.html
+
+ENABLE_BLOCKLIST_DE=yes
+
+# Comma/semicolon/space-separated list of types to fetch.
+# Allowed values: all ssh mail apache imap ftp sip bots strongips ircbot bruteforcelogin
+BLOCKLIST_DE_TYPES="ssh,apache,ftp,bots,bruteforcelogin"
+
+
+# ── AbuseIPDB ──────────────────────────────────────────────────────────────────
+# https://www.abuseipdb.com/
+# Requires a free API key. Register at https://www.abuseipdb.com/register
+
+ENABLE_ABUSEIPDB=no
+
+# Your AbuseIPDB API key (required when ENABLE_ABUSEIPDB=yes)
+ABUSEIPDB_API_KEY=""
+
+# Minimum abuse confidence score (1–100). Higher = fewer but more certain entries.
+# 90 is a good starting point for high-confidence blocks.
+ABUSEIPDB_CONFIDENCE_MINIMUM=90
+
+
+# ── DShield ────────────────────────────────────────────────────────────────────
+# https://www.dshield.org/
+# Daily updated list of the top attacking /24 networks.
+# No API key required.
+
+ENABLE_DSHIELD=yes
+
+# URL of the DShield block list (CIDR / tab-separated format)
+DSHIELD_URL="https://feeds.dshield.org/block.txt"
+
+
+# ── FireHOL ────────────────────────────────────────────────────────────────────
+# https://iplists.firehol.org/
+# Aggregated, curated IP blocklists maintained on GitHub.
+# No API key required.
+
+ENABLE_FIREHOL=no
+
+# Space-separated list of FireHOL set names (without .netset/.ipset extension).
+# Browse all available sets at: https://iplists.firehol.org/
+#
+# Recommended sets focused on login/brute-force attacks:
+#   firehol_level1  – top-quality aggregated IPs (recommended baseline)
+#   firehol_level2  – additional medium-confidence IPs
+#   sshpranker      – IPs known to scan for open SSH ports
+#
+FIREHOL_SETS="firehol_level1 firehol_level2"
+
+# Base URL for raw FireHOL set files (GitHub raw content)
+FIREHOL_BASE_URL="https://raw.githubusercontent.com/firehol/blocklist-ipsets/master"
+
+
+# ── ThreatFox (abuse.ch) ───────────────────────────────────────────────────────
+# https://threatfox.abuse.ch/
+# Community-driven IOC database including C2 IPs used in brute-force and malware campaigns.
+# No API key required.
+
+ENABLE_THREATFOX=no
+
+# Fetch IOCs from the last N days (1–7)
+THREATFOX_DAYS=7
