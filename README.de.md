@@ -1,6 +1,6 @@
 # blocklist-firewall-update
 
-## Sprache: 🇩🇪 Deutsch | [🇬🇧 English](README.md)
+Sprache: 🇩🇪 Deutsch | [🇬🇧 English](README.md)
 
 ### Überblick
 Dieses Projekt enthaelt ein Shell-Skript, das IP-Blocklisten von mehreren Bedrohungsquellen herunterlaedt und lokale Firewall-Sperren aktualisiert.

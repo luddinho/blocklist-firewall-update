@@ -1,6 +1,6 @@
 # blocklist-firewall-update
 
-## Language: 🇬🇧 English | [🇩🇪 Deutsch](README.de.md)
+Language: 🇬🇧 English | [🇩🇪 Deutsch](README.de.md)
 
 ### Overview
 This project provides a shell script that downloads IP blocklists from multiple threat intelligence sources and updates a local firewall block set.
