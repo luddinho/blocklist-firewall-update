@@ -43,7 +43,7 @@ cp blocklist-firewall-update.conf.example blocklist-firewall-update.conf
 
 Das Skript sucht die Datei in dieser Reihenfolge:
 1. Pfad aus der Umgebungsvariablen `CONFIG_FILE`
-2. Gleiches Verzeichnis wie das Skript (`blocklist-firewall-update.conf`)
+2. Gleiches Verzeichnis wie das Skript (`blocklist-firewall-update.sh`)
 3. `/etc/blocklist-firewall-update.conf`
 
 Alle Einstellungen koennen auch als Umgebungsvariablen gesetzt werden. Werte in der Konfigurationsdatei ueberschreiben die eingebauten Standardwerte des Skripts.

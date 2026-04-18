@@ -43,7 +43,7 @@ cp blocklist-firewall-update.conf.example blocklist-firewall-update.conf
 
 The script searches for the config file in:
 1. Path from the `CONFIG_FILE` environment variable
-2. Same directory as the script (`blocklist-firewall-update.conf`)
+2. Same directory as the script (`blocklist-firewall-update.sh`)
 3. `/etc/blocklist-firewall-update.conf`
 
 All settings can also be set as environment variables. Settings in the config file override the script's built-in defaults.
